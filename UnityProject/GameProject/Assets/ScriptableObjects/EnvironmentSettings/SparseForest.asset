@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f6f681b0f9a6246ae6b0d92a4bf4a3, type: 3}
+  m_Name: SparseForest
+  m_EditorClassIdentifier: Assembly-CSharp::EnvironmentSettings
+  obstaclePrefabs:
+  - {fileID: 1529527902529171753, guid: a956023bcecbbce47afc8dfab1410790, type: 3}
+  - {fileID: 186248104608284874, guid: dc11ecf13a317b840b21ddcd7f46ea5b, type: 3}
+  obstacleDensity: 1
+  obstacleSpeed: 1
+  skyColor1:
+    serializedVersion: 2
+    rgba: 4286611584
+  skyColor2:
+    serializedVersion: 2
+    rgba: 4286611584

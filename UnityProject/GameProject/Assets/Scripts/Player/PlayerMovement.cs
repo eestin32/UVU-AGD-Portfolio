@@ -5,21 +5,26 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 	[SerializeField] private float speed = 5f;
+    [SerializeField] private float maxDeviation = 5f;
 	public float EasingFactor = 5f;
     private float TargetY;
     private float CameraDistance;
     private Vector2 MousePosition;
     private Renderer renderer;
+    private float maxY;
+    private float minY;
     private void Start()
     {
         renderer = GetComponent<Renderer>();
+        maxY = transform.position.y + maxDeviation; 
+        minY = transform.position.y - maxDeviation;
     }
     private void Update()
 	{
         CameraDistance = transform.position.z - Camera.main.transform.position.z;
         MousePosition = Mouse.current.position.ReadValue();
         TargetY = Camera.main.ScreenToWorldPoint(new Vector3(MousePosition.x, MousePosition.y, CameraDistance)).y;
-        TargetY = Mathf.Clamp(TargetY, 45f, 55f);
+        TargetY = Mathf.Clamp(TargetY, minY, maxY);
         float newX = transform.position.x + speed * Time.deltaTime;
         // Convert easing factor to a per-frame interpolation value that is framerate-independent.
         // EasingFactor now represents a speed (higher = faster), applied with an exponential decay so
