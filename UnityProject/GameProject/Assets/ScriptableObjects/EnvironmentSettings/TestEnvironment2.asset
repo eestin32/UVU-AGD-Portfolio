@@ -15,6 +15,7 @@ MonoBehaviour:
   obstaclePrefabs:
   - {fileID: 1529527902529171753, guid: a956023bcecbbce47afc8dfab1410790, type: 3}
   obstacleDensity: 1
-  obstacleSpeed: 3
-  skyColor1: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  skyColor2: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  obstacleSpeed: 2
+  skyColor1: {r: 1, g: 0, b: 0.051311374, a: 1}
+  skyColor2: {r: 0, g: 0.08110881, b: 1, a: 1}
+  terrainColor: {r: 1, g: 1, b: 1, a: 1}

@@ -8,4 +8,5 @@ public class EnvironmentSettings : ScriptableObject
     public float obstacleSpeed = 1.0f;
     public Color skyColor1 = new Color(0.5f, 0.5f, 0.5f, 1f);
     public Color skyColor2 = new Color(0.5f, 0.5f, 0.5f, 1f);
+    public Color terrainColor = new Color(1f, 1f, 1f, 1f);
 }

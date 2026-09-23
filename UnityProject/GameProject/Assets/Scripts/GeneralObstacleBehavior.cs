@@ -4,9 +4,8 @@ using UnityEngine.UIElements;
 
 public class GeneralObstacleBehavior : MonoBehaviour
 {
-    private Vector2 velocity;
+    public Vector2 velocity = Vector2.zero;
     [SerializeField] private float speed = 5f;
-    // Awake() is called once before Start() immediately at the start of an object's lifetime 
     void Awake()
     {
         float randomScale = Random.Range(0.5f, 2f);
@@ -20,8 +19,6 @@ public class GeneralObstacleBehavior : MonoBehaviour
     {
         transform.position += new Vector3(velocity.x, velocity.y, 0f) * Time.deltaTime * speed;
     }
-
-    // Update is called once per frame
     IEnumerator WaitandKill()
     {
         yield return new WaitForSeconds(5f);
