@@ -16,6 +16,6 @@ MonoBehaviour:
   - {fileID: 1529527902529171753, guid: a956023bcecbbce47afc8dfab1410790, type: 3}
   obstacleDensity: 1
   obstacleSpeed: 2
-  skyColor1: {r: 1, g: 0, b: 0.051311374, a: 1}
-  skyColor2: {r: 0, g: 0.08110881, b: 1, a: 1}
-  terrainColor: {r: 1, g: 1, b: 1, a: 1}
+  skyColor1: {r: 0.11372549, g: 0.30588236, b: 0.5372549, a: 1}
+  skyColor2: {r: 0, g: 0.69803923, b: 0.7921569, a: 1}
+  terrainColor: {r: 0.9843137, g: 0.81960785, b: 0.63529414, a: 1}
