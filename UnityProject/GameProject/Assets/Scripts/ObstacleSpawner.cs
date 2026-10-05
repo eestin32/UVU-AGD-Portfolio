@@ -3,15 +3,34 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
+    [SerializeField] private GameStateChannel gameStateChannel;
     [SerializeField] private GameEnvironments gameEnvironments;
-    private Transform camera;
     [SerializeField] private int spawnRange = 3;
-    void OnEnable()
+    private Transform camera;
+
+    void Start()
     {
         camera = Camera.main.transform;
+    }
+    private void OnEnable()
+    {
+        if (gameStateChannel == null) return;
+        gameStateChannel.OnStart += OnStart;
+        gameStateChannel.OnDeath += OnDeath;
+    }
+
+    private void OnDisable()
+    {
+        if (gameStateChannel == null) return;
+        gameStateChannel.OnStart -= OnStart;
+        gameStateChannel.OnDeath -= OnDeath;
+    }
+    private void OnStart()
+    {
+        GameObject[] existingObstacles = GameObject.FindGameObjectsWithTag("Obstacle"); for (int i = 0; i < existingObstacles.Length; i++) Destroy(existingObstacles[i]);
         StartCoroutine(SpawnObstacles());
     }
-    private void OnDisable()
+    private void OnDeath()
     {
         StopAllCoroutines();
     }

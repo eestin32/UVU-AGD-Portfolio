@@ -3,15 +3,41 @@ using UnityEngine;
 
 public class EnvironmentCycler : MonoBehaviour
 {
+    [SerializeField] private GameStateChannel gameStateChannel;
     [SerializeField] private GameEnvironments gameEnvironments;
+    
     void Start()
     {
-        StartCoroutine(EnvironmentCycle());
+        gameEnvironments.current = gameEnvironments.list[0];
         setVariablesInstant();
     }
+    private void OnEnable()
+    {
+        if (gameStateChannel == null) return;
+        gameStateChannel.OnStart += OnStart;
+        gameStateChannel.OnDeath += OnDeath;
+        gameStateChannel.OnRestart += OnRestart;
+    }
+
     private void OnDisable()
     {
+        if (gameStateChannel == null) return;
+        gameStateChannel.OnStart -= OnStart;
+        gameStateChannel.OnDeath -= OnDeath;
+        gameStateChannel.OnRestart -= OnRestart;
+    }
+    private void OnStart()
+    {
+        StartCoroutine(EnvironmentCycle());
+    }
+    private void OnDeath()
+    {
         StopAllCoroutines();
+    }
+    private void OnRestart()
+    {
+        gameEnvironments.current = gameEnvironments.list[0];
+        setVariablesInstant();
     }
     IEnumerator SetVariables()
     {
@@ -21,8 +47,8 @@ public class EnvironmentCycler : MonoBehaviour
         {
             timeElapsed += Time.deltaTime;
             float t = timeElapsed / duration;
-            Shader.SetGlobalColor("_TopColor", Color.Lerp(Shader.GetGlobalColor("_TopColor"), gameEnvironments.current.skyColor1, t));
-            Shader.SetGlobalColor("_BottomColor", Color.Lerp(Shader.GetGlobalColor("_BottomColor"), gameEnvironments.current.skyColor2, t));
+            Shader.SetGlobalColor("_TopColor", Color.Lerp(Shader.GetGlobalColor("_TopColor"), gameEnvironments.current.skyColor1.linear, t));
+            Shader.SetGlobalColor("_BottomColor", Color.Lerp(Shader.GetGlobalColor("_BottomColor"), gameEnvironments.current.skyColor2.linear, t));
             RenderSettings.ambientSkyColor = Color.Lerp(RenderSettings.ambientSkyColor, gameEnvironments.current.skyColor1, t);
             RenderSettings.ambientEquatorColor = Color.Lerp(RenderSettings.ambientEquatorColor, gameEnvironments.current.skyColor2, t);
             RenderSettings.ambientGroundColor = Color.Lerp(RenderSettings.ambientGroundColor, gameEnvironments.current.terrainColor, t);
@@ -32,8 +58,9 @@ public class EnvironmentCycler : MonoBehaviour
     }
     private void setVariablesInstant()
     {
-        Shader.SetGlobalColor("_TopColor", gameEnvironments.current.skyColor1);
-        Shader.SetGlobalColor("_BottomColor", gameEnvironments.current.skyColor2);
+        Shader.SetGlobalColor("_TopColor", gameEnvironments.current.skyColor1.linear);
+        Shader.SetGlobalColor("_BottomColor", gameEnvironments.current.skyColor2.linear);
+
         RenderSettings.ambientSkyColor = gameEnvironments.current.skyColor1;
         RenderSettings.ambientEquatorColor = gameEnvironments.current.skyColor2;
         RenderSettings.ambientGroundColor = gameEnvironments.current.terrainColor;
