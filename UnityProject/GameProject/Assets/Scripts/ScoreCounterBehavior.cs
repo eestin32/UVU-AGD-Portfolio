@@ -47,11 +47,15 @@ public class ScoreCounterBehavior : MonoBehaviour
     private void OnDeath()
     {
         StopAllCoroutines();
+        if (int.Parse(scoreText.text) > highscore.IntValue)
+        {
+            scoreText.text = (scoreText.text + "\nNew High Score!");
+            highscore.IntValue = score;
+        }
     }
 
     private void OnRestart()
     {
-        highscore.IntValue = Mathf.Max(highscore.IntValue, score);
         scoreText.text = ("High score: " + highscore.IntValue.ToString());
     } 
     IEnumerator ScoreCounter()

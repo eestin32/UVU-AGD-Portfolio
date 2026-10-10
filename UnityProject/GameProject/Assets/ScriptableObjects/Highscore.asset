@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc7c9c6604b66d24e81ad722494936db, type: 3}
   m_Name: Highscore
   m_EditorClassIdentifier: Assembly-CSharp::SingleUniversalValue
-  IntValue: 0
+  IntValue: 35
   FloatValue: 0
